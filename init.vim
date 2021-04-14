@@ -1,0 +1,33 @@
+set number relativenumber
+colorscheme industry
+set nocompatible
+set backspace=indent,eol,start
+set history=1000
+set showcmd
+set showmode
+set autoread
+set hidden
+set laststatus=2
+set ruler
+set cursorline
+set title
+set noswapfile
+set nobackup
+set nowb
+set autoindent
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=2
+set expandtab
+set nowrap
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set encoding=utf-8
+syntax enable
+set confirm
+set nomodeline
+set nrformats-=octal
+set shell
+set spell

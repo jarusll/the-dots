@@ -34,7 +34,7 @@ exec feh --no-startup-id --bg-scale /home/jarusll/Pictures/rick.jpg
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod3
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -189,5 +189,5 @@ bar {
 }
 
 # border
-for_window [class="^.*"] border pixel 2
+for_window [class="^.*"] border pixel 1
 

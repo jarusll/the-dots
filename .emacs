@@ -7,6 +7,10 @@
 ; enable keycase in modeline
 (setq keycast-mode t)
 
+; auto save stuff
+(setq auto-save-file-name-transforms
+  `((".*" "~/.emacs-saves/" t)))
+
 ; auto completions for C-x C-f
 (ido-mode 1)
 

@@ -7,19 +7,24 @@
 ; enable keycase in modeline
 (setq keycast-mode t)
 
+; ivy stuff
+(ivy-mode)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+
 ; auto save stuff
 (setq auto-save-file-name-transforms
   `((".*" "~/.emacs-saves/" t)))
 
 ; auto completions for C-x C-f
-(ido-mode 1)
+; (ido-mode 1)
 
 ; remap M-x to smex
-(global-set-key (kbd "M-x") 'smex)
-(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+; (global-set-key (kbd "M-x") 'smex)
+; (global-set-key (kbd "M-X") 'smex-major-mode-commands)
 
 ; good old M-x
-(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+; (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ; relative numbers
 (display-line-numbers-mode 1)

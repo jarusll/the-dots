@@ -23,10 +23,6 @@
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
 
-;; auto save stuff
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs-saves/" t)))
-
 ;; relative numbers
 (display-line-numbers-mode 1)
 (setq display-line-numbers 'relative)
@@ -49,6 +45,5 @@
  )
 
 ;; autosave dir
-;; (setq backup-directory-alist '(("." . "~/.emacs-saves"))
 (setq backup-directory-alist
-      `(("~/.emacs-saves")))
+      `(("." . ,(concat user-emacs-directory "backups"))))

@@ -10,6 +10,7 @@
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(toggle-scroll-bar -1)
 (set-default-font "Jetbrains Mono-12")
 
 ;; enable keycase in modeline

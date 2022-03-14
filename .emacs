@@ -11,7 +11,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
-(set-default-font "Jetbrains Mono-12")
+(set-default-font "Jetbrains Mono-16")
 
 ;; enable keycase in modeline
 (keycast-mode 1)
@@ -37,7 +37,9 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (magit ivy-rich transpose-frame keycast smex avy))))
+ '(package-selected-packages
+   (quote
+    (markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,3 +58,6 @@
 (defun prev-window ()
   (interactive)
   (other-window -1))
+
+;; keybind C-c m to compile
+(global-set-key (kbd "C-c m") 'recompile)

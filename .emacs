@@ -25,8 +25,8 @@
 (setq enable-recursive-minibuffers t)
 
 ;; relative numbers
-(display-line-numbers-mode 1)
-(setq display-line-numbers 'relative)
+(global-display-line-numbers-mode 1)
+(setq global-display-line-numbers 'relative)
 
 ;; set theme
 (custom-set-variables
@@ -37,7 +37,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (transpose-frame keycast smex avy))))
+ '(package-selected-packages (quote (magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,3 +48,11 @@
 ;; autosave dir
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
+
+;; quick window switching
+(global-set-key (kbd "C-.") #'other-window)
+(global-set-key (kbd "C-,") #'prev-window)
+
+(defun prev-window ()
+  (interactive)
+  (other-window -1))

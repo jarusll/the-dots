@@ -39,7 +39,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -61,3 +61,13 @@
 
 ;; keybind C-c m to compile
 (global-set-key (kbd "C-c m") 'recompile)
+
+;; adding env variables
+(setenv "PATH"
+	(concat
+	 "/home/jarusll/.nvm/versions/node/v14.18.1/bin;"
+	 (getenv "PATH")
+	 ))
+
+;; set tab width
+(setq tab-stop-list '(4 8 12 16))

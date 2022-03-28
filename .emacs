@@ -39,7 +39,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -71,3 +71,6 @@
 
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))
+
+;; registers
+(set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))

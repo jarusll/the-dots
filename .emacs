@@ -62,13 +62,6 @@
 ;; keybind C-c m to compile
 (global-set-key (kbd "C-c m") 'recompile)
 
-;; adding env variables
-(setenv "PATH"
-	(concat
-	 "/home/jarusll/.nvm/versions/node/v14.18.1/bin;"
-	 (getenv "PATH")
-	 ))
-
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))
 

@@ -16,9 +16,6 @@
 ;; enable keycase in modeline
 (keycast-mode 1)
 
-;; sync emacs clipboard with systems
-(setq x-select-enable-clipboard t)
-
 ;; ivy stuff
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
@@ -26,7 +23,7 @@
 
 ;; relative numbers
 (global-display-line-numbers-mode 1)
-(setq global-display-line-numbers 'relative)
+(setq display-line-numbers-type 'relative)
 
 ;; set theme
 (custom-set-variables
@@ -39,7 +36,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

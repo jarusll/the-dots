@@ -69,6 +69,7 @@
 
 ;; registers
 (set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))
+(set-register ?e (cons 'file "~/.emacs"))
 
 ;; recent files
 (recentf-mode 1)

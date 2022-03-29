@@ -65,5 +65,24 @@
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))
 
+;; discord rich presence
+(elcord-mode)
+
+;;;; QOL STUFF
+
 ;; registers
 (set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))
+
+;; recent files
+(recentf-mode 1)
+
+;; sync emacs clipboard with systems
+(setq x-select-enable-clipboard t)
+
+;; remove last position in file
+(save-place-mode 1)
+
+;; refresh buffer when file changed
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+

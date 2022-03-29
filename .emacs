@@ -36,7 +36,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -84,3 +84,6 @@
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
+;; plant uml mode
+(setq plantuml-jar-path "~/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)

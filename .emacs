@@ -81,6 +81,7 @@
 
 ;; Counsel switch buffer
 (global-set-key (kbd "C-x b") #'counsel-switch-buffer)
+(global-set-key (kbd "C-x d") #'counsel-dired)
 
 ;;;; MISC
 

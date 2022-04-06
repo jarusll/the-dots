@@ -1,4 +1,4 @@
-;; melpa stuff
+;; INIT STUFF
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
@@ -15,7 +15,7 @@
 (toggle-scroll-bar -1)
 (set-default-font "Jetbrains Mono-10")
 
-;; enable keycase in modeline
+;; enable keycast in modeline
 (keycast-mode 1)
 
 ;; ivy stuff
@@ -31,6 +31,55 @@
 (global-display-line-numbers-mode 1)
 (setq display-line-numbers-type 'relative)
 
+;; recent files
+(recentf-mode 1)
+
+;; plant uml mode
+(setq plantuml-jar-path "~/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
+(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+
+;; discord rich presence
+(elcord-mode)
+
+;; refresh buffer when file changed
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
+;; remove last position in file
+(save-place-mode 1)
+
+;;;; QOL STUFF
+
+;; registers
+(set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))
+(set-register ?e (cons 'file "~/.emacs"))
+
+;; sync emacs clipboard with systems
+(setq x-select-enable-clipboard t)
+
+;;;; EXWM STUFF
+
+;; exwm config
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+(setq exwm-workspace-number 10)
+
+;; startup scripts
+(call-process "/bin/bash" "~/scripts/capsescape.sh")
+
+;;;; KEYBINDS
+
+;; quick window switching
+(global-set-key (kbd "C-.") #'other-window)
+(global-set-key (kbd "C-,") #'prev-window)
+
+;; keybind C-c m to compile
+(global-set-key (kbd "C-c m") 'recompile)
+
+;;;; MISC
+
 ;; set theme
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -42,7 +91,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -54,48 +103,10 @@
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
 
-;; quick window switching
-(global-set-key (kbd "C-.") #'other-window)
-(global-set-key (kbd "C-,") #'prev-window)
-
 (defun prev-window ()
   (interactive)
   (other-window -1))
 
-;; keybind C-c m to compile
-(global-set-key (kbd "C-c m") 'recompile)
-
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))
 
-;; discord rich presence
-(elcord-mode)
-
-;;;; QOL STUFF
-
-;; registers
-(set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))
-(set-register ?e (cons 'file "~/.emacs"))
-
-;; recent files
-(recentf-mode 1)
-
-;; sync emacs clipboard with systems
-(setq x-select-enable-clipboard t)
-
-;; remove last position in file
-(save-place-mode 1)
-
-;; refresh buffer when file changed
-(global-auto-revert-mode 1)
-(setq global-auto-revert-non-file-buffers t)
-
-;; plant uml mode
-(setq plantuml-jar-path "~/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-
-;; exwm config
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)

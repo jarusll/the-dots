@@ -79,6 +79,9 @@
 ;; keybind C-c m to compile
 (global-set-key (kbd "C-c m") 'recompile)
 
+;; Counsel switch buffer
+(global-set-key (kbd "C-x b") #'counsel-switch-buffer)
+
 ;;;; MISC
 
 ;; set theme

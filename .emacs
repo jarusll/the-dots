@@ -111,3 +111,7 @@
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))
 
+;;;; CUSTOM FUNCTIONS/COMMANDS
+(defun insert-current-date () 
+  (interactive) 
+  (insert (shell-command-to-string "echo -n $(date +%F)")))

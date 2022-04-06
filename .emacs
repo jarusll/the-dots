@@ -4,7 +4,7 @@
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(package-initialize)      
+(package-initialize)
 
 ;;;; MODES SETUP
 
@@ -22,6 +22,7 @@
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+(counsel-mode 1)
 
 ;; which key mode
 (which-key-mode 1)

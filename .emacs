@@ -11,7 +11,7 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
-(set-default-font "Jetbrains Mono-16")
+(set-default-font "Jetbrains Mono-10")
 
 ;; enable keycase in modeline
 (keycast-mode 1)
@@ -36,7 +36,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
+    (zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit ivy-rich transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -88,3 +88,8 @@
 (setq plantuml-jar-path "~/plantuml.jar")
 (setq plantuml-default-exec-mode 'jar)
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+
+;; exwm config
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)

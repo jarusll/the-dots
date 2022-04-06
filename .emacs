@@ -6,6 +6,8 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)      
 
+;;;; MODES SETUP
+
 ;; misc setup
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -20,6 +22,10 @@
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
 (setq enable-recursive-minibuffers t)
+
+;; which key mode
+(which-key-mode 1)
+(which-key-setup-side-window-right)
 
 ;; relative numbers
 (global-display-line-numbers-mode 1)

@@ -50,6 +50,9 @@
 ;; remove last position in file
 (save-place-mode 1)
 
+;; golden ratio mode
+(golden-ratio-mode 1)
+
 ;;;; QOL STUFF
 
 ;; registers
@@ -96,7 +99,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit transpose-frame keycast smex avy))))
+    (golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

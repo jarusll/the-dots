@@ -70,6 +70,33 @@
 (exwm-config-default)
 (setq exwm-workspace-number 10)
 
+; send key to app as direct key
+(define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+
+;; These keys should always pass through to Emacs
+(setq exwm-input-prefix-keys
+      '(?\C-x
+	?\C-u
+	?\C-h
+	?\M-x
+	?\M-`
+	?\M-&
+	?\M-:
+	?\C-\M-j  ;; Buffer list
+	?\C-\ ))  ;; Ctrl+Space
+
+(setq exwm-input-global-keys
+        `(
+          ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
+          ([?\s-r] . exwm-reset)
+
+          ;; Move between windows
+          ([s-left] . windmove-left)
+          ([s-right] . windmove-right)
+          ([s-up] . windmove-up)
+          ([s-down] . windmove-down)))
+
+
 ;; startup scripts
 (call-process "/bin/bash" "~/scripts/capsescape.sh")
 

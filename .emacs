@@ -13,7 +13,8 @@
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
-(set-default-font "Jetbrains Mono-16")
+;; (set-default-font "Jetbrains Mono-16")
+(set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
 
 ;; enable keycast in modeline
 (keycast-mode 1)
@@ -86,6 +87,12 @@
 	?\C-\ ))  ;; Ctrl+Space
 
 (global-set-key (kbd "s-d") 'counsel-linux-app)
+
+(require 'exwm-randr)
+(exwm-randr-enable)
+
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
 
 ;; startup scripts
 (call-process "/bin/bash" "~/scripts/capsescape.sh")

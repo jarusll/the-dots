@@ -85,17 +85,7 @@
 	?\C-\M-j  ;; Buffer list
 	?\C-\ ))  ;; Ctrl+Space
 
-(setq exwm-input-global-keys
-        `(
-          ;; Reset to line-mode (C-c C-k switches to char-mode via exwm-input-release-keyboard)
-          ([?\s-r] . exwm-reset)
-
-          ;; Move between windows
-          ([s-left] . windmove-left)
-          ([s-right] . windmove-right)
-          ([s-up] . windmove-up)
-          ([s-down] . windmove-down)))
-
+(global-set-key (kbd "s-d") 'counsel-linux-app)
 
 ;; startup scripts
 (call-process "/bin/bash" "~/scripts/capsescape.sh")
@@ -127,7 +117,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit transpose-frame keycast smex avy))))
+    (desktop-environment sx golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package ob-php markdown-mode magit transpose-frame keycast smex avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

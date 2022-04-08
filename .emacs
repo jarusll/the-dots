@@ -86,7 +86,7 @@
 	?\C-\M-j  ;; Buffer list
 	?\C-\ ))  ;; Ctrl+Space
 
-(global-set-key (kbd "s-d") 'counsel-linux-app)
+(global-set-key (kbd "s-SPC") 'counsel-linux-app)
 
 (require 'exwm-randr)
 (exwm-randr-enable)

@@ -53,6 +53,7 @@
 (save-place-mode 1)
 
 ;; golden ratio mode
+(setq golden-ratio-auto-scale t)
 (golden-ratio-mode 1)
 
 ;;;; QOL STUFF

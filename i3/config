@@ -212,3 +212,6 @@ bar {
 
 # border
 for_window [class="^.*"] border pixel 1
+
+# app shortcuts
+bindsym $mod+b exec xdg-open https://

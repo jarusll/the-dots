@@ -212,15 +212,3 @@ bar {
 
 # border
 for_window [class="^.*"] border pixel 1
-# Assign Workspaces:
-# assign [class="Google Chrome"] $ws1
-# assign [class="Visual Studio Code"] $ws10
-# assign [class="LXTerminal"] $ws3
-# for_window [class="*Google Chrome"] move container to workspace $ws2
-# app shortcuts
-
-assign [class="Slack"] $ws2
-assign [class="Discord"] $ws2
-assign [class="Hubstaff"] $ws5
-assign [class="Kraken"] $ws8
-assign [class="Code"] $ws10

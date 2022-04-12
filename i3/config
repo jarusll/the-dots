@@ -42,7 +42,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # set wallpaper
-exec --no-startup-id feh --bg-scale /home/jarusll/Pictures/hades.jpg
+exec --no-startup-id feh --bg-scale /home/jarusll/Pictures/cycling.jpeg
 
 # i3 config file (v4)
 #

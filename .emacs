@@ -59,7 +59,7 @@
 ;;;; QOL STUFF
 
 ;; registers
-(set-register ?d (cons 'file "~/source/portfolio/src/diary/index.md"))
+(set-register ?d (cons 'file "~/source/jarusll.github.io/src/diary/index.md"))
 (set-register ?e (cons 'file "~/.emacs"))
 
 ;; sync emacs clipboard with systems

@@ -106,6 +106,7 @@
 (global-set-key (kbd "C-,") #'prev-window)
 
 ;; keybind C-c m to compile
+(global-set-key (kbd "C-c C-c c") 'compile)
 (global-set-key (kbd "C-c m") 'recompile)
 
 ;; Counsel switch buffer

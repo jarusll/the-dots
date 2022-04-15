@@ -136,6 +136,15 @@
  ;; If there is more than one, they won't work right.
  )
 
+; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+; install the missing packages
+(dolist (package package-list)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 ;; autosave dir
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))

@@ -102,6 +102,11 @@
 ;;;; KEYBINDS
 
 ;; quick window switching
+
+(defun prev-window ()
+  (interactive)
+  (other-window -1))
+
 (global-set-key (kbd "C-.") #'other-window)
 (global-set-key (kbd "C-,") #'prev-window)
 
@@ -149,10 +154,6 @@
 ;; autosave dir
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
-
-(defun prev-window ()
-  (interactive)
-  (other-window -1))
 
 ;; set tab width
 (setq tab-stop-list '(4 8 12 16))

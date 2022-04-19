@@ -43,7 +43,7 @@
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
 
 ;; discord rich presence
-(elcord-mode)
+;; (elcord-mode)
 
 ;; refresh buffer when file changed
 (global-auto-revert-mode 1)

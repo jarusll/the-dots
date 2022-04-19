@@ -68,25 +68,25 @@
 ;;;; EXWM STUFF
 
 ;; exwm config
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
-(setq exwm-workspace-number 10)
+;; (require 'exwm)
+;; (require 'exwm-config)
+;; (exwm-config-default)
+;; (setq exwm-workspace-number 10)
 
-; send key to app as direct key
-(define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
+;; ; send key to app as direct key
+;; (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
 
-;; These keys should always pass through to Emacs
-(setq exwm-input-prefix-keys
-      '(?\C-x
-	?\C-u
-	?\C-h
-	?\M-x
-	?\M-`
-	?\M-&
-	?\M-:
-	?\C-\M-j  ;; Buffer list
-	?\C-\ ))  ;; Ctrl+Space
+;; ;; These keys should always pass through to Emacs
+;; (setq exwm-input-prefix-keys
+;;       '(?\C-x
+;; 	?\C-u
+;; 	?\C-h
+;; 	?\M-x
+;; 	?\M-`
+;; 	?\M-&
+;; 	?\M-:
+;; 	?\C-\M-j  ;; Buffer list
+;; 	?\C-\ ))  ;; Ctrl+Space
 
 (global-set-key (kbd "s-SPC") 'counsel-linux-app)
 

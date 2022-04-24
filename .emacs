@@ -6,6 +6,9 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
+;; import shell vars
+(exec-path-from-shell-initialize)
+
 ;;;; MODES SETUP
 
 ;; misc setup

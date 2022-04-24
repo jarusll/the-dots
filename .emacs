@@ -133,6 +133,9 @@
 
 (global-set-key (kbd "C-x \\") #'transpose-frame)
 
+;; company mode keybinds
+(global-set-key (kbd "C-c C-SPC") #'company-complete-common)
+
 ;;;; MISC
 
 ;; set theme

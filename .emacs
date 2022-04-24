@@ -182,5 +182,11 @@
     (append-to-file body nil filepath)
     (shell-command-to-string (concat "python3 " filepath))))
 
+(defun compile-and-run()
+  (interactive)
+  (let ((filename (buffer-name))
+	(execname (file-name-base)))
+    (shell-command (concat "g++ " filename " -o " execname " && " "./" execname))))
+
 ;; variables
 (set-variable (quote scheme-program-name) "chezscheme")

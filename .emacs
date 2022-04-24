@@ -22,6 +22,15 @@
 ;; enable keycast in modeline
 (keycast-mode 1)
 
+;; enable company-mode for autocompletion in buffer
+(global-company-mode 1)
+
+;; snippets
+(use-package yasnippet
+  :config
+  (setq yas-snippets-dirs '("~/.emacs/snippets"))
+  (yas-global-mode 1))
+
 ;; ivy stuff
 (ivy-mode 1)
 (ivy-rich-mode 1)

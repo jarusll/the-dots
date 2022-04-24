@@ -176,6 +176,11 @@
   (interactive) 
   (insert (shell-command-to-string "echo -n $(date +%F)")))
 
+(defun org-babel-execute:python3 (body params)
+  (let ((filepath (concat (temporary-file-directory) (number-to-string (random)))))
+    (with-temp-file filepath)
+    (append-to-file body nil filepath)
+    (shell-command-to-string (concat "python3 " filepath))))
 
 ;; variables
 (set-variable (quote scheme-program-name) "chezscheme")

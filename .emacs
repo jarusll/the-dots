@@ -136,6 +136,14 @@
 ;; company mode keybinds
 (global-set-key (kbd "C-c C-SPC") #'company-complete-common)
 
+(add-hook 'rust-mode-hook
+  (lambda ()
+    (local-set-key (kbd "C-c C-c C-c") #'compile-rust)))
+
+(add-hook 'haskell-mode-hook
+  (lambda ()
+   (local-set-key (kbd "C-c C-c C-c") #'compile-haskell)))
+
 ;;;; MISC
 
 ;; set theme
@@ -149,7 +157,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+    (evil haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
  '(yas-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -185,11 +193,41 @@
     (append-to-file body nil filepath)
     (shell-command-to-string (concat "python3 " filepath))))
 
-(defun compile-and-run()
+(defun compile-cpp()
   (interactive)
   (let ((filename (buffer-name))
 	(execname (file-name-base)))
     (shell-command (concat "g++ " filename " -o " execname " && " "./" execname))))
+
+(defun compile-ts()
+  (interactive)
+  (let ((filename (buffer-name))
+	(execname (file-name-base)))
+    (shell-command (concat "tsc " filename " && node " execname ".js"))))
+
+(defun compile-rust()
+  (interactive)
+  (let ((filename (buffer-name))
+	(execname (file-name-base)))
+    (shell-command (concat "rustc " filename " && ./" execname))))
+
+
+(defun compile-haskell()
+  (interactive)
+  (let ((filename (buffer-name))
+	(execname (file-name-base)))
+    (shell-command (concat "ghc --make " filename " && ./" execname))))
+
+
+(defun compile-js()
+  (interactive)
+  (let ((filename (buffer-name))
+	(execname (file-name-base)))
+    (shell-command (concat "node " filename))))
+
+(defun docker-compose-up()
+  (interactive)
+  (shell-command "docker-compose up"))
 
 ;; variables
 (set-variable (quote scheme-program-name) "chezscheme")

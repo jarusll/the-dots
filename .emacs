@@ -11,6 +11,19 @@
 
 ;;;; MODES SETUP
 
+;; Run/highlight code using babel in org-mode
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (python . t)
+   (shell . t)
+   ;; Include other languages here...
+   ))
+;; Syntax highlight in #+BEGIN_SRC blocks
+(setq org-src-fontify-natively t)
+;; Don't prompt before running code in org
+(setq org-confirm-babel-evaluate nil)
+
 ;; misc setup
 (setq inhibit-startup-screen t)
 (menu-bar-mode 0)
@@ -187,7 +200,7 @@
   (interactive) 
   (insert (shell-command-to-string "echo -n $(date +%F)")))
 
-(defun org-babel-execute:python3 (body params)
+(defun org-babel-execute:python (body params)
   (let ((filepath (concat (temporary-file-directory) (number-to-string (random)))))
     (with-temp-file filepath)
     (append-to-file body nil filepath)

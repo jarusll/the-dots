@@ -80,6 +80,13 @@
 ;; golden ratio mode
 (golden-ratio-mode 1)
 (setq golden-ratio-auto-scale t)
+(setq golden-ratio-extra-commands
+      '(evil-window-next
+	evil-window-prev))
+
+;;;; evil stuff
+(evil-mode 1) ; evil global 
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
 ;;;; QOL STUFF
 

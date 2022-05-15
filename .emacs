@@ -25,7 +25,7 @@
 (setq org-confirm-babel-evaluate nil)
 
 ;; misc setup
-(setq inhibit-startup-screen t)
+
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
@@ -53,7 +53,11 @@
 
 ;; which key mode
 (which-key-mode 1)
-(which-key-setup-side-window-right)
+(setq which-key-idle-delay 0.05)
+(setq which-key-idle-secondary-delay 0.05)
+(which-key-mode)
+(which-key-setup-side-window-bottom)
+(setq which-key-popup-type 'side-window)
 
 ;; relative numbers
 (global-display-line-numbers-mode 1)
@@ -82,11 +86,16 @@
 (setq golden-ratio-auto-scale t)
 (setq golden-ratio-extra-commands
       '(evil-window-next
-	evil-window-prev))
+	evil-window-prev
+	evil-window-left
+	evil-window-right
+	evil-window-top
+	evil-window-bottom))
 
 ;;;; evil stuff
 (evil-mode 1) ; evil global 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(evil-set-initial-state 'dired-mode 'emacs)
 
 ;;;; QOL STUFF
 
@@ -157,12 +166,12 @@
 (global-set-key (kbd "C-c C-SPC") #'company-complete-common)
 
 (add-hook 'rust-mode-hook
-  (lambda ()
-    (local-set-key (kbd "C-c C-c C-c") #'compile-rust)))
+	  (lambda ()
+	    (local-set-key (kbd "C-c C-c C-c") #'compile-rust)))
 
 (add-hook 'haskell-mode-hook
-  (lambda ()
-   (local-set-key (kbd "C-c C-c C-c") #'compile-haskell)))
+	  (lambda ()
+	    (local-set-key (kbd "C-c C-c C-c") #'compile-haskell)))
 
 ;;;; MISC
 
@@ -178,6 +187,8 @@
  '(package-selected-packages
    (quote
     (evil ox-hugo htmlize 0blayout lsp-treemacs treemacs cfrs hydra pfuture ace-window bui lsp-mode dap-mode haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+ '(which-key-allow-evil-operators t)
+ '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -186,11 +197,11 @@
  ;; If there is more than one, they won't work right.
  )
 
-; fetch the list of packages available 
+					; fetch the list of packages available 
 (unless package-archive-contents
   (package-refresh-contents))
 
-; install the missing packages
+					; install the missing packages
 (dolist (package package-selected-packages)
   (unless (package-installed-p package)
     (package-install package)))

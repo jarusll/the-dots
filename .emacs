@@ -17,6 +17,7 @@
  '(
    (python . t)
    (shell . t)
+   (sql . t)
    ;; Include other languages here...
    ))
 ;; Syntax highlight in #+BEGIN_SRC blocks
@@ -262,3 +263,12 @@
 
 ;; variables
 (set-variable (quote scheme-program-name) "chezscheme")
+
+;;;; org site
+(setq org-publish-project-alist
+      ("surajyadav.xyz"
+       :base-directory
+       :publishing-directory
+       :publishing-function org-publish-org-to-html
+       ))
+

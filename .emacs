@@ -38,6 +38,9 @@
   (unless (package-installed-p package)
     (package-install package)))
 
+;;;; CONSTANTS
+(defconst user-full-name "Suraj Yadav")
+
 ;; import shell vars
 (use-package exec-path-from-shell
   :ensure t

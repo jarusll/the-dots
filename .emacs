@@ -18,7 +18,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell keycast general evil htmlize 0blayout treemacs cfrs hydra pfuture ace-window bui haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+    (evil-collection exec-path-from-shell keycast general evil htmlize 0blayout treemacs cfrs hydra pfuture ace-window bui haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
  '(which-key-allow-evil-operators t)
  '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
@@ -192,14 +192,21 @@
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t)
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
   ;; set leader to Space
   (evil-set-leader 'normal (kbd "SPC"))
   (define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-  (evil-set-initial-state 'dired-mode 'emacs)
+  ;; (evil-set-initial-state 'dired-mode 'emacs)
   )
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 (defconst general-leader "SPC")
 (use-package general
@@ -227,9 +234,11 @@
     "n" '(:ignore t :which-key "new")
     "ns" 'yas-new-snippet
     "nf" 'find-file
+    "nb" 'bookmark-set
     "o" '(:ignore t :which-key "open")
     "od" 'open/diary
     "oe" 'open/init-el
+    "ob" 'bookmark-bmenu-list
     ":" 'eval-expression					;
     "!" 'shell-command
     "\\" 'transpose-frame

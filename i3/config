@@ -215,3 +215,4 @@ for_window [class="^.*"] border pixel 1
 
 # app shortcuts
 bindsym $mod+b exec xdg-open https://
+bindsym $mod+Control+s exec --no-startup-id systemctl suspend

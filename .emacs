@@ -216,6 +216,8 @@
     "b" '(:ignore t :which-key "buffer")
     "bs" 'save-buffer
     "bc" 'kill-buffer
+    "n" '(:ignore t :which-key "new")
+    "ns" 'yas-new-snippet
     ":" 'eval-expression					;
     "!" 'shell-command
     "\\" 'transpose-frame

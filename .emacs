@@ -105,12 +105,15 @@
   :config
   (which-key-mode)
   (which-key-setup-side-window-bottom)
-  (setq which-key-idle-delay 0.05)
+  (setq which-key-idle-delay 0.10)
   (setq which-key-idle-secondary-delay 0.05)
   (setq which-key-popup-type 'side-window))
 
 ;; relative numbers
 (use-package emacs
+  :bind (
+	 ("C-M-j" . counsel-switch-buffer)
+	 )
   :init
   ;; relative line numbers
   (global-display-line-numbers-mode 1)
@@ -163,9 +166,12 @@
 
 ;; golden ratio mode
 (use-package golden-ratio
+  :init
+  (setq golden-ratio-auto-scale t)
+  (setq golden-ratio-adjust-factor .9
+      golden-ratio-wide-adjust-factor .9)
   :config
   (golden-ratio-mode 1)
-  (setq golden-ratio-auto-scale t)
   (setq golden-ratio-extra-commands
 	'(evil-window-next
 	  evil-window-prev
@@ -176,29 +182,50 @@
 
 ;;;; evil stuff
 (use-package evil
+  :after (evil-leader)
   :init
   (setq evil-want-C-u-scroll t)
   :config
   (evil-mode 1)
-  (evil-set-initial-state 'dired-mode 'emacs))
+  ;; set leader to Space
+  (evil-set-leader 'normal (kbd "SPC"))
+  (define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (evil-set-initial-state 'dired-mode 'emacs)
+  )
 
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode))
 
-;;;; KEYBINDS
+(defconst general-leader "SPC")
+(use-package general
+  :config
+  (general-evil-setup)
+  (general-create-definer general-leader
+    :prefix general-leader)
 
-;; keybind C-c m to compile
-(global-set-key (kbd "C-c C-c c") 'compile)
-
-(global-set-key (kbd "C-c m") 'recompile)
-
-;; Counsel switch buffer
-(global-set-key (kbd "C-x b") #'counsel-switch-buffer)
-(global-set-key (kbd "C-x d") #'counsel-dired)
-(global-set-key (kbd "C-x C-f") #'counsel-find-file)
-
-(global-set-key (kbd "C-x \\") #'transpose-frame)
-
-;; company mode keybinds
-(global-set-key (kbd "C-c C-SPC") #'company-complete-common)
+  ;; ** Global Keybindings
+  (general-leader
+   :states 'visual
+   :keymaps 'override
+   ;; files
+   "f" '(:ignore t :which-key "files")
+   "ff" 'find-file
+   "fw" 'save-buffer
+   "fd" 'counsel-dired
+   "e" '(:ignore t :which-key "eval")
+   "eb" 'eval-buffer
+   "er" 'eval-region
+   "ed" 'eval-defun
+   "b" '(:ignore t :which-key "buffer")
+   "bs" 'save-buffer
+   "bc" 'kill-buffer
+   ":" 'eval-expression					;
+   "!" 'shell-command
+   "\\" 'transpose-frame
+   ))
 
 (add-hook 'rust-mode-hook
 	  (lambda ()

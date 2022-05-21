@@ -63,6 +63,9 @@
 
   ;; Don't prompt before running code in org
   (setq org-confirm-babel-evaluate nil)
+  
+  ;; set org path relative
+  (setq org-link-file-path-type 'relative)
   )
 
 ;; enable keycast in modeline

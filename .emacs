@@ -18,7 +18,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (exec-path-from-shell keycast general evil htmlize 0blayout lsp-treemacs treemacs cfrs hydra pfuture ace-window bui lsp-mode dap-mode haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+    (exec-path-from-shell keycast general evil htmlize 0blayout treemacs cfrs hydra pfuture ace-window bui haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
  '(which-key-allow-evil-operators t)
  '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
@@ -148,6 +148,8 @@
   (toggle-scroll-bar -1)
   ;; set font to jetbrains mono
   (set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
+  ;; always follow symlinks without confirmation
+  (setq vc-follow-symlinks t)
   )
 
 (use-package recentf
@@ -189,7 +191,7 @@
   ;; set leader to Space
   (evil-set-leader 'normal (kbd "SPC"))
   (define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
   (evil-set-initial-state 'dired-mode 'emacs)
   )
 
@@ -215,13 +217,29 @@
     "ed" 'eval-defun
     "b" '(:ignore t :which-key "buffer")
     "bs" 'save-buffer
-    "bc" 'kill-buffer
+    "bc" 'buffer/close
     "n" '(:ignore t :which-key "new")
     "ns" 'yas-new-snippet
+    "nf" 'find-file
+    "o" '(:ignore t :which-key "open")
+    "od" 'open/diary
+    "oe" 'open/init-el
     ":" 'eval-expression					;
     "!" 'shell-command
     "\\" 'transpose-frame
     ))
+
+(defun buffer/close()
+  (interactive)
+  (kill-buffer (current-buffer)))
+
+(defun open/diary()
+  (interactive)
+  (jump-to-register ?d))
+
+(defun open/init-el()
+  (interactive)
+  (jump-to-register ?e))
 
 (add-hook 'rust-mode-hook
 	  (lambda ()

@@ -4,12 +4,51 @@
 ;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
 ;; and `package-pinned-packages`. Most users will not need or want to do this.
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
 (package-initialize)
 
+;;;; MISC
+
+;; set theme
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (tango-dark)))
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell keycast general evil htmlize 0blayout lsp-treemacs treemacs cfrs hydra pfuture ace-window bui lsp-mode dap-mode haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+ '(which-key-allow-evil-operators t)
+ '(which-key-allow-imprecise-window-fit t)
+ '(yas-global-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; fetch the list of packages available 
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; install the missing packages
+(dolist (package package-selected-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
+
 ;; import shell vars
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (exec-path-from-shell-initialize))
 
 ;;;; MODES SETUP
+
+;; ORG SETUP
 
 ;; Run/highlight code using babel in org-mode
 (org-babel-do-load-languages
@@ -18,85 +57,113 @@
    (python . t)
    (shell . t)
    (sql . t)
-   ;; Include other languages here...
    ))
+
 ;; Syntax highlight in #+BEGIN_SRC blocks
 (setq org-src-fontify-natively t)
 ;; Don't prompt before running code in org
 (setq org-confirm-babel-evaluate nil)
 
-;; misc setup
-
+;;;; MISC SETUP
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (toggle-scroll-bar -1)
-;; (set-default-font "Jetbrains Mono-16")
 (set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
 
 ;; enable keycast in modeline
-(keycast-mode 1)
+(use-package keycast
+  :ensure t
+  :config
+  (keycast-mode 1))
 
 ;; enable company-mode for autocompletion in buffer
-(global-company-mode 1)
+(use-package company
+  :ensure t
+  :config
+  (global-company-mode 1))
 
 ;; snippets
 (use-package yasnippet
-  :config
-  (setq yas-snippets-dirs '("~/.emacs/snippets"))
+  :ensure t
+  :config (setq yas-snippets-dirs '("~/.emacs/snippets"))
   (yas-global-mode 1))
 
 ;; ivy stuff
-(ivy-mode 1)
-(ivy-rich-mode 1)
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
-(counsel-mode 1)
+(use-package counsel
+  :ensure t
+  :after ivy
+  :config (counsel-mode))
+
+(use-package ivy
+  :ensure t
+  :config
+    (ivy-mode)
+    (setq ivy-use-virtual-buffers t)
+    (setq enable-recursive-minibuffers t))
+
+(use-package ivy-rich
+  :ensure t
+  :after ivy
+  :config
+    (ivy-rich-mode 1))
 
 ;; which key mode
-(which-key-mode 1)
-(setq which-key-idle-delay 0.05)
-(setq which-key-idle-secondary-delay 0.05)
-(which-key-mode)
-(which-key-setup-side-window-bottom)
-(setq which-key-popup-type 'side-window)
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode)
+  (which-key-setup-side-window-bottom)
+  (setq which-key-idle-delay 0.05)
+  (setq which-key-idle-secondary-delay 0.05)
+  (setq which-key-popup-type 'side-window))
 
 ;; relative numbers
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-type 'relative)
+(use-package emacs
+  :init
+  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers-type 'relative)
+  ;; refresh buffer when file changed
+  (global-auto-revert-mode 1)
+  (setq global-auto-revert-non-file-buffers t)
+  ;; remove last position in file
+  (save-place-mode 1)
+  )
 
-;; recent files
-(recentf-mode 1)
+(use-package recentf
+  :config
+  (recentf-mode 1))
 
 ;; plant uml mode
-(setq plantuml-jar-path "~/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+(use-package plantuml-mode
+  :config
+  (setq plantuml-jar-path "~/plantuml.jar")
+  (setq plantuml-default-exec-mode 'jar)
+  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
 
 ;; discord rich presence
 ;; (elcord-mode)
 
-;; refresh buffer when file changed
-(global-auto-revert-mode 1)
-(setq global-auto-revert-non-file-buffers t)
-
-;; remove last position in file
-(save-place-mode 1)
-
 ;; golden ratio mode
-(golden-ratio-mode 1)
-(setq golden-ratio-auto-scale t)
-(setq golden-ratio-extra-commands
-      '(evil-window-next
-	evil-window-prev
-	evil-window-left
-	evil-window-right
-	evil-window-top
-	evil-window-bottom))
+(use-package golden-ratio
+  :config
+  (golden-ratio-mode 1)
+  (setq golden-ratio-auto-scale t)
+  (setq golden-ratio-extra-commands
+	'(evil-window-next
+	  evil-window-prev
+	  evil-window-left
+	  evil-window-right
+	  evil-window-top
+	  evil-window-bottom)))
 
 ;;;; evil stuff
-(evil-mode 1) ; evil global 
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(evil-set-initial-state 'dired-mode 'emacs)
+(use-package evil
+  :init
+  (setq evil-want-C-u-scroll t)
+  :config
+  (evil-mode 1) ; evil global 
+  ;; (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+  (evil-set-initial-state 'dired-mode 'emacs))
 
 ;;;; QOL STUFF
 
@@ -107,50 +174,12 @@
 ;; sync emacs clipboard with systems
 (setq x-select-enable-clipboard t)
 
-;;;; EXWM STUFF
-
-;; exwm config
-;; (require 'exwm)
-;; (require 'exwm-config)
-;; (exwm-config-default)
-;; (setq exwm-workspace-number 10)
-
-;; ; send key to app as direct key
-;; (define-key exwm-mode-map [?\C-q] 'exwm-input-send-next-key)
-
-;; ;; These keys should always pass through to Emacs
-;; (setq exwm-input-prefix-keys
-;;       '(?\C-x
-;; 	?\C-u
-;; 	?\C-h
-;; 	?\M-x
-;; 	?\M-`
-;; 	?\M-&
-;; 	?\M-:
-;; 	?\C-\M-j  ;; Buffer list
-;; 	?\C-\ ))  ;; Ctrl+Space
-
-(global-set-key (kbd "s-SPC") 'counsel-linux-app)
-
-(require 'exwm-randr)
-(exwm-randr-enable)
-
-(require 'exwm-systemtray)
-(exwm-systemtray-enable)
-
-;; startup scripts
-(call-process "/bin/bash" "~/scripts/capsescape.sh")
-
 ;;;; KEYBINDS
-
 ;; quick window switching
 
 (defun prev-window ()
   (interactive)
   (other-window -1))
-
-(global-set-key (kbd "C-.") #'other-window)
-(global-set-key (kbd "C-,") #'prev-window)
 
 ;; keybind C-c m to compile
 (global-set-key (kbd "C-c C-c c") 'compile)
@@ -174,38 +203,6 @@
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-c C-c") #'compile-haskell)))
 
-;;;; MISC
-
-;; set theme
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages
-   (quote
-    (evil ox-hugo htmlize 0blayout lsp-treemacs treemacs cfrs hydra pfuture ace-window bui lsp-mode dap-mode haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore exwm quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
- '(which-key-allow-evil-operators t)
- '(which-key-allow-imprecise-window-fit t)
- '(yas-global-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-					; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
-					; install the missing packages
-(dolist (package package-selected-packages)
-  (unless (package-installed-p package)
-    (package-install package)))
 
 ;; autosave dir
 (setq backup-directory-alist
@@ -243,7 +240,6 @@
 	(execname (file-name-base)))
     (shell-command (concat "rustc " filename " && ./" execname))))
 
-
 (defun compile-haskell()
   (interactive)
   (let ((filename (buffer-name))
@@ -263,12 +259,3 @@
 
 ;; variables
 (set-variable (quote scheme-program-name) "chezscheme")
-
-;;;; org site
-(setq org-publish-project-alist
-      ("surajyadav.xyz"
-       :base-directory
-       :publishing-directory
-       :publishing-function org-publish-org-to-html
-       ))
-

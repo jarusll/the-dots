@@ -210,7 +210,7 @@
 
   ;; ** Global Keybindings
   (general-leader
-    :states 'normal
+    :states '(normal visual)
     :keymaps 'override
     ;; files
     "f" '(:ignore t :which-key "files")

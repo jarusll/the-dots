@@ -89,15 +89,15 @@
 (use-package ivy
   :ensure t
   :config
-    (ivy-mode)
-    (setq ivy-use-virtual-buffers t)
-    (setq enable-recursive-minibuffers t))
+  (ivy-mode)
+  (setq ivy-use-virtual-buffers t)
+  (setq enable-recursive-minibuffers t))
 
 (use-package ivy-rich
   :ensure t
   :after ivy
   :config
-    (ivy-rich-mode 1))
+  (ivy-rich-mode 1))
 
 ;; which key mode
 (use-package which-key
@@ -169,7 +169,7 @@
   :init
   (setq golden-ratio-auto-scale t)
   (setq golden-ratio-adjust-factor .9
-      golden-ratio-wide-adjust-factor .9)
+	golden-ratio-wide-adjust-factor .9)
   :config
   (golden-ratio-mode 1)
   (setq golden-ratio-extra-commands
@@ -182,7 +182,6 @@
 
 ;;;; evil stuff
 (use-package evil
-  :after (evil-leader)
   :init
   (setq evil-want-C-u-scroll t)
   :config
@@ -194,38 +193,33 @@
   (evil-set-initial-state 'dired-mode 'emacs)
   )
 
-(use-package evil-leader
-  :ensure t
-  :config
-  (global-evil-leader-mode))
-
 (defconst general-leader "SPC")
 (use-package general
   :config
   (general-evil-setup)
   (general-create-definer general-leader
-    :prefix general-leader)
+    :prefix "SPC")
 
   ;; ** Global Keybindings
   (general-leader
-   :states 'visual
-   :keymaps 'override
-   ;; files
-   "f" '(:ignore t :which-key "files")
-   "ff" 'find-file
-   "fw" 'save-buffer
-   "fd" 'counsel-dired
-   "e" '(:ignore t :which-key "eval")
-   "eb" 'eval-buffer
-   "er" 'eval-region
-   "ed" 'eval-defun
-   "b" '(:ignore t :which-key "buffer")
-   "bs" 'save-buffer
-   "bc" 'kill-buffer
-   ":" 'eval-expression					;
-   "!" 'shell-command
-   "\\" 'transpose-frame
-   ))
+    :states 'normal
+    :keymaps 'override
+    ;; files
+    "f" '(:ignore t :which-key "files")
+    "ff" 'find-file
+    "fw" 'save-buffer
+    "fd" 'counsel-dired
+    "e" '(:ignore t :which-key "eval")
+    "eb" 'eval-buffer
+    "er" 'eval-region
+    "ed" 'eval-defun
+    "b" '(:ignore t :which-key "buffer")
+    "bs" 'save-buffer
+    "bc" 'kill-buffer
+    ":" 'eval-expression					;
+    "!" 'shell-command
+    "\\" 'transpose-frame
+    ))
 
 (add-hook 'rust-mode-hook
 	  (lambda ()

@@ -7,8 +7,6 @@
 
 (package-initialize)
 
-;;;; MISC
-
 ;; set theme
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -46,29 +44,23 @@
   :config
   (exec-path-from-shell-initialize))
 
-;;;; MODES SETUP
+(use-package org
+  :config
+  ;; load languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (python . t)
+     (shell . t)
+     (sql . t)
+     ))
 
-;; ORG SETUP
+  ;; Syntax highlight in #+BEGIN_SRC blocks
+  (setq org-src-fontify-natively t)
 
-;; Run/highlight code using babel in org-mode
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (python . t)
-   (shell . t)
-   (sql . t)
-   ))
-
-;; Syntax highlight in #+BEGIN_SRC blocks
-(setq org-src-fontify-natively t)
-;; Don't prompt before running code in org
-(setq org-confirm-babel-evaluate nil)
-
-;;;; MISC SETUP
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(toggle-scroll-bar -1)
-(set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
+  ;; Don't prompt before running code in org
+  (setq org-confirm-babel-evaluate nil)
+  )
 
 ;; enable keycast in modeline
 (use-package keycast
@@ -120,13 +112,39 @@
 ;; relative numbers
 (use-package emacs
   :init
+  ;; relative line numbers
   (global-display-line-numbers-mode 1)
   (setq display-line-numbers-type 'relative)
+
   ;; refresh buffer when file changed
   (global-auto-revert-mode 1)
   (setq global-auto-revert-non-file-buffers t)
   ;; remove last position in file
   (save-place-mode 1)
+  ;; autosave dir
+  (setq backup-directory-alist
+	`(("." . ,(concat user-emacs-directory "backups"))))
+
+  ;; set tab width
+  (setq tab-stop-list '(4 8 12 16))
+
+  ;;;; QOL STUFF
+
+  ;; registers
+  (set-register ?d (cons 'file "~/source/jarusll.github.io/src/diary/index.md"))
+  (set-register ?e (cons 'file "~/.emacs"))
+
+  ;; sync emacs clipboard with systems
+  (setq x-select-enable-clipboard t)
+
+  ;; disable menu bar
+  (menu-bar-mode 0)
+  ;; disable menu bar
+  (tool-bar-mode 0)
+  ;; disable menu bar
+  (toggle-scroll-bar -1)
+  ;; set font to jetbrains mono
+  (set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
   )
 
 (use-package recentf
@@ -161,28 +179,15 @@
   :init
   (setq evil-want-C-u-scroll t)
   :config
-  (evil-mode 1) ; evil global 
-  ;; (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+  (evil-mode 1)
   (evil-set-initial-state 'dired-mode 'emacs))
 
-;;;; QOL STUFF
-
-;; registers
-(set-register ?d (cons 'file "~/source/jarusll.github.io/src/diary/index.md"))
-(set-register ?e (cons 'file "~/.emacs"))
-
-;; sync emacs clipboard with systems
-(setq x-select-enable-clipboard t)
 
 ;;;; KEYBINDS
-;; quick window switching
-
-(defun prev-window ()
-  (interactive)
-  (other-window -1))
 
 ;; keybind C-c m to compile
 (global-set-key (kbd "C-c C-c c") 'compile)
+
 (global-set-key (kbd "C-c m") 'recompile)
 
 ;; Counsel switch buffer
@@ -202,14 +207,6 @@
 (add-hook 'haskell-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c C-c C-c") #'compile-haskell)))
-
-
-;; autosave dir
-(setq backup-directory-alist
-      `(("." . ,(concat user-emacs-directory "backups"))))
-
-;; set tab width
-(setq tab-stop-list '(4 8 12 16))
 
 ;;;; CUSTOM FUNCTIONS/COMMANDS
 (defun insert-current-date () 

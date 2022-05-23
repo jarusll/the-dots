@@ -54,6 +54,7 @@
    'org-babel-load-languages
    '(
      (python . t)
+     (ruby . t)
      (shell . t)
      (sql . t)
      ))

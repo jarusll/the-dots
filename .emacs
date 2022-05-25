@@ -18,7 +18,7 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(package-selected-packages
    (quote
-    (evil-collection exec-path-from-shell keycast general evil htmlize 0blayout treemacs cfrs hydra pfuture ace-window bui haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
+    (ob-go go-mode ox-hugo org-preview-html evil-collection exec-path-from-shell keycast general evil htmlize 0blayout treemacs cfrs hydra pfuture ace-window bui haskell-mode flycheck typescript-mode company rust-mode yasnippet exec-path-from-shell ansible elixir-mode ivy-rich helpful dockerfile-mode desktop-environment sx golden-ratio counsel ivy zygospore quelpa zzz-to-char elisp-format rjsx-mode json-mode which-key plantuml-mode elcord yaml-mode use-package markdown-mode magit transpose-frame keycast smex avy)))
  '(which-key-allow-evil-operators t)
  '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
@@ -54,6 +54,7 @@
    'org-babel-load-languages
    '(
      (python . t)
+     (go . t)
      (ruby . t)
      (shell . t)
      (sql . t)

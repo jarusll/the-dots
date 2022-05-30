@@ -113,7 +113,7 @@
   :config
   (which-key-mode)
   (which-key-setup-side-window-bottom)
-  (setq which-key-idle-delay 0.10)
+  (setq which-key-idle-delay 0.90)
   (setq which-key-idle-secondary-delay 0.05)
   (setq which-key-popup-type 'side-window))
 

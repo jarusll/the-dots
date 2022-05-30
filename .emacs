@@ -147,12 +147,13 @@
   ;; sync emacs clipboard with systems
   (setq x-select-enable-clipboard t)
 
-  ;; disable menu bar
-  (menu-bar-mode 0)
-  ;; disable menu bar
-  (tool-bar-mode 0)
-  ;; disable menu bar
-  (toggle-scroll-bar -1)
+  (if (display-graphic-p)
+    ;; disable menu bar
+    (menu-bar-mode 0)
+    ;; disable menu bar
+    (tool-bar-mode 0)
+    ;; disable scroll bar
+    (toggle-scroll-bar -1))
   ;; set font to jetbrains mono
   (set-face-attribute 'default nil :font "Jetbrains Mono" :height 160)
   ;; always follow symlinks without confirmation

@@ -164,13 +164,6 @@
   :config
   (recentf-mode 1))
 
-;; plant uml mode
-(use-package plantuml-mode
-  :config
-  (setq plantuml-jar-path "~/plantuml.jar")
-  (setq plantuml-default-exec-mode 'jar)
-  (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode)))
-
 ;; discord rich presence
 ;; (elcord-mode)
 

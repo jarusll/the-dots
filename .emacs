@@ -16,6 +16,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
+ '(org-hugo-base-dir "/home/jarusll/source/hugo-site/content/posts")
  '(package-selected-packages
    '(magit golden-ratio quelpa yasnippet company which-key use-package treemacs pkg-info ox-hugo org-preview-html ob-go keycast ivy-rich htmlize haskell-mode go-mode general exec-path-from-shell evil-collection counsel bui 0blayout))
  '(which-key-allow-evil-operators t)

@@ -47,17 +47,31 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package ox-hugo
+  :init
+  (setq org-hugo-default-section-directory "fragments")
+  (setq org-hugo-base-dir "~/source/hugo-site")
+  :ensure t)
+
 (use-package org
+  :init
+
+  (defvar org-babel-js-function-wrapper 
+    "console.log(JSON.stringify(require('util').inspect(function(){ \n%s\n}())));"
+    "Javascript code to print value of body. ")
+  (setq org-src-preserve-indentation t)
   :config
   ;; load languages
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
      (python . t)
+     (haskell . t)
      (go . t)
      (ruby . t)
      (shell . t)
      (sql . t)
+     (js . t)
      ))
 
   ;; Syntax highlight in #+BEGIN_SRC blocks

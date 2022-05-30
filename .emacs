@@ -214,16 +214,15 @@
     :states '(normal visual)
     :keymaps 'override
     ;; files
+    "w" 'save-buffer
     "f" '(:ignore t :which-key "files")
     "ff" 'find-file
-    "fw" 'save-buffer
     "fd" 'counsel-dired
     "e" '(:ignore t :which-key "eval")
     "eb" 'eval-buffer
     "er" 'eval-region
     "ed" 'eval-defun
     "b" '(:ignore t :which-key "buffer")
-    "bs" 'save-buffer
     "bc" 'buffer/close
     "n" '(:ignore t :which-key "new")
     "ns" 'yas-new-snippet

@@ -16,6 +16,7 @@
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(custom-enabled-themes (quote (tango-dark)))
+ '(org-hugo-base-dir "/home/jarusll/source/hugo-site/content/posts")
  '(package-selected-packages
    '(magit golden-ratio quelpa yasnippet company which-key use-package treemacs pkg-info ox-hugo org-preview-html ob-go keycast ivy-rich htmlize haskell-mode go-mode general exec-path-from-shell evil-collection counsel bui 0blayout))
  '(which-key-allow-evil-operators t)
@@ -46,17 +47,31 @@
   :config
   (exec-path-from-shell-initialize))
 
+(use-package ox-hugo
+  :init
+  (setq org-hugo-default-section-directory "fragments")
+  (setq org-hugo-base-dir "~/source/hugo-site")
+  :ensure t)
+
 (use-package org
+  :init
+
+  (defvar org-babel-js-function-wrapper 
+    "console.log(JSON.stringify(require('util').inspect(function(){ \n%s\n}())));"
+    "Javascript code to print value of body. ")
+  (setq org-src-preserve-indentation t)
   :config
   ;; load languages
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
      (python . t)
+     (haskell . t)
      (go . t)
      (ruby . t)
      (shell . t)
      (sql . t)
+     (js . t)
      ))
 
   ;; Syntax highlight in #+BEGIN_SRC blocks
@@ -215,16 +230,15 @@
     :states '(normal visual)
     :keymaps 'override
     ;; files
+    "w" 'save-buffer
     "f" '(:ignore t :which-key "files")
     "ff" 'find-file
-    "fw" 'save-buffer
     "fd" 'counsel-dired
     "e" '(:ignore t :which-key "eval")
     "eb" 'eval-buffer
     "er" 'eval-region
     "ed" 'eval-defun
     "b" '(:ignore t :which-key "buffer")
-    "bs" 'save-buffer
     "bc" 'buffer/close
     "n" '(:ignore t :which-key "new")
     "ns" 'yas-new-snippet

@@ -235,6 +235,8 @@
     :states '(normal visual)
     :keymaps 'override
     ;; files
+    "g" 'magit-status
+    "l" 'counsel-switch-buffer
     "w" 'save-buffer
     "f" '(:ignore t :which-key "files")
     "ff" 'find-file

@@ -98,6 +98,7 @@
 
 ;; snippets
 (use-package yasnippet
+  :defer t 
   :ensure t
   :config (setq yas-snippets-dirs '("~/.emacs/snippets"))
   (yas-global-mode 1))
@@ -123,6 +124,7 @@
 
 ;; which key mode
 (use-package which-key
+  :defer t
   :ensure t
   :config
   (which-key-mode)
@@ -176,6 +178,7 @@
   )
 
 (use-package recentf
+  :defer t
   :config
   (recentf-mode 1))
 
@@ -184,6 +187,7 @@
 
 ;; golden ratio mode
 (use-package golden-ratio
+  :defer t
   :init
   (setq golden-ratio-auto-scale t)
   (setq golden-ratio-adjust-factor .9

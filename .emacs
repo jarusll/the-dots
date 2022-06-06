@@ -49,7 +49,7 @@
 
 (use-package ox-hugo
   :init
-  (setq org-hugo-default-section-directory "fragments")
+  (setq org-hugo-default-section-directory "posts")
   (setq org-hugo-base-dir "~/source/hugo-site")
   :ensure t)
 
@@ -237,6 +237,7 @@
     ;; files
     "g" 'magit-status
     "l" 'counsel-switch-buffer
+    "m" 'counsel-M-x
     "w" 'save-buffer
     "f" '(:ignore t :which-key "files")
     "ff" 'find-file

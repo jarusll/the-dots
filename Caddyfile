@@ -1,14 +1,7 @@
 surajyadav.xyz:443 {
-	# Set this path to your site's directory.
-	root * /var/www/html
-
-	# enable gzip compression
-	encode gzip
-
-	# Enable the static file server.
-	file_server
+	reverse_proxy localhost:1313
 }
 
 jupyter.surajyadav.xyz:443 {
-	reverse_proxy jupyter:8000
+	reverse_proxy localhost:8888
 }

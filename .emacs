@@ -18,7 +18,8 @@
  '(custom-enabled-themes (quote (tango-dark)))
  '(org-hugo-base-dir "/home/jarusll/source/hugo-site/content/posts")
  '(package-selected-packages
-   '(magit golden-ratio quelpa yasnippet company which-key use-package treemacs pkg-info ox-hugo org-preview-html ob-go keycast ivy-rich htmlize haskell-mode go-mode general exec-path-from-shell evil-collection counsel bui 0blayout))
+   (quote
+    (gnuplot gnuplot-mode magit golden-ratio quelpa yasnippet company which-key use-package treemacs pkg-info ox-hugo org-preview-html ob-go keycast ivy-rich htmlize haskell-mode go-mode general exec-path-from-shell evil-collection counsel bui 0blayout)))
  '(which-key-allow-evil-operators t)
  '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
@@ -55,7 +56,6 @@
 
 (use-package org
   :init
-
   (defvar org-babel-js-function-wrapper 
     "console.log(JSON.stringify(require('util').inspect(function(){ \n%s\n}())));"
     "Javascript code to print value of body. ")
@@ -66,12 +66,10 @@
    'org-babel-load-languages
    '(
      (python . t)
-     (haskell . t)
-     (go . t)
      (ruby . t)
      (shell . t)
-     (sql . t)
      (js . t)
+     (gnuplot . t)
      ))
 
   ;; Syntax highlight in #+BEGIN_SRC blocks

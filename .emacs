@@ -233,6 +233,7 @@
     :states '(normal visual)
     :keymaps 'override
     ;; files
+    "cc" 'compile
     "g" 'magit-status
     "l" 'counsel-switch-buffer
     "m" 'counsel-M-x

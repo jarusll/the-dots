@@ -36,6 +36,13 @@ Plugin 'airblade/vim-gitgutter'
 " Use git in vim
 Plugin 'tpope/vim-fugitive'
 
+" fzf for fast file search
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+
+" automatically resize pane
+Plugin 'roman/golden-ratio'
+
 call vundle#end()         
 
 " keybinds
@@ -44,3 +51,10 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 " I dont know what this does
 " nnoremap <C-f> :NERDTreeFind<CR>
+
+" Ctrl+s saves
+nnoremap <silent><c-s> :<c-u>update<cr>
+
+" load my vimrc
+nnoremap <F3> :e $MYVIMRC<CR>
+map <leader><F3> :source $MYVIMRC<CR>

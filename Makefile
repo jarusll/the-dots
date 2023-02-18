@@ -1,7 +1,7 @@
 all: clean link
 
 link:
-	stow .
+	stow -d . -t ~/ .
 
 clean:
-	stow -D .
+	stow -d . -t ~/ -D .

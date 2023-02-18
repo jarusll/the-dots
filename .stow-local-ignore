@@ -1,1 +1,4 @@
 \.git
+Makefile
+Caddyfile
+init.vim

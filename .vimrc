@@ -55,6 +55,10 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 " Ctrl+s saves
 nnoremap <silent><c-s> :<c-u>update<cr>
 
-" load my vimrc
+" load vimrc
 nnoremap <F3> :e $MYVIMRC<CR>
+" reload vimrc
 map <leader><F3> :source $MYVIMRC<CR>
+
+" open fzf files search
+nnoremap <M-j> :Files<CR>

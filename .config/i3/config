@@ -8,21 +8,11 @@
 # applets
 exec --no-startup-id nm-applet 
 exec --no-startup-id volumeicon
+# scripts
 exec --no-startup-id ~/scripts/capsescape.sh
 exec --no-startup-id ~/scripts/arandrhomepclayout.sh
 # exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080
 exec --no-startup-id pulseaudio
-
-# apps
-# exec --no-startup-id xdg-open https://www.google.com
-# exec --no-startup-id pulseaudio --start
-# exec --no-startup-id ~/.fehbg &
-# exec --no-startup-id exec slack'
-# exec --no-startup-id exec ~/scripts/hubstaff.sh'
-# exec --no-startup-id exec pavucontrol'
-# exec --no-startup-id exec gitkraken'
-# exec --no-startup-id exec lxterminal'
-# exec --no-startup-id exec code'
 
 # set monitor variables
 set $fm HDMI-A-0
@@ -47,7 +37,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # set wallpaper
-# exec --no-startup-id feh --bg-scale /home/jarusll/Pictures/cycling.jpeg
+exec --no-startup-id feh --bg-scale ~/bg.png
 
 # i3 config file (v4)
 #
@@ -232,6 +222,6 @@ for_window [class="^.*"] border pixel 1
 
 # app shortcuts
 bindsym $mod+b exec xdg-open https://
-bindsym $mod+p exec emacsclient -c -a emacs
-bindsym $mod+Shift+p exec --no-startup-id emacs --daemon
-bindsym $mod+Control+s exec --no-startup-id systemctl suspend
+# bindsym $mod+p exec emacsclient -c -a emacs
+# bindsym $mod+Shift+p exec --no-startup-id emacs --daemon
+bindsym $mod+Control+s exec --no-startup-id i3lock

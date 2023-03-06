@@ -14,6 +14,7 @@ exec --no-startup-id ~/scripts/arandrhomepclayout.sh
 # exec --no-startup-id xrandr --output HDMI-0 --mode 1920x1080
 exec --no-startup-id pulseaudio
 exec --no-startup-id pa-applet
+exec --no-startup-id blueman-applet
 
 # set monitor variables
 set $fm HDMI-A-0

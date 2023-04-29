@@ -15,11 +15,10 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (tango-dark)))
+ '(custom-enabled-themes '(tango-dark))
  '(org-hugo-base-dir "/home/jarusll/source/hugo-site/content/posts")
  '(package-selected-packages
-   (quote
-    (gnuplot gnuplot-mode magit golden-ratio quelpa yasnippet company which-key use-package treemacs pkg-info ox-hugo org-preview-html ob-go keycast ivy-rich htmlize haskell-mode go-mode general exec-path-from-shell evil-collection counsel bui 0blayout)))
+   '(magit golden-ratio quelpa which-key use-package treemacs pkg-info ob-go ivy-rich go-mode general exec-path-from-shell evil-collection counsel bui 0blayout))
  '(which-key-allow-evil-operators t)
  '(which-key-allow-imprecise-window-fit t)
  '(yas-global-mode t))
@@ -163,8 +162,8 @@
   (setq x-select-enable-clipboard t)
 
   (if (display-graphic-p)
-    ;; disable menu bar
-    (menu-bar-mode 0)
+      ;; disable menu bar
+      (menu-bar-mode 0)
     ;; disable menu bar
     (tool-bar-mode 0)
     ;; disable scroll bar

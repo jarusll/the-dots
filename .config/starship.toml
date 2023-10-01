@@ -1,6 +1,6 @@
 # Use custom format
 format = '''
-[┌───────────────────>](bold green)
+[┌───────────────────>](bold green)$hostname
 [│](bold green)$directory$git_branch$git_status$git_state
 [└─](bold green)$character '''
 
@@ -16,3 +16,8 @@ error_symbol = '[⚠](bold red) '
 
 [git_branch]
 symbol = '𣎴'
+
+[hostname]
+ssh_only = false
+format = 'on [$hostname]($style)'
+style = 'bold blue'

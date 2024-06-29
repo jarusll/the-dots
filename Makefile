@@ -11,3 +11,4 @@ update:
 	git pull
 	git stash pop
 	git commit -am "Update from ${HOSTNAME}"
+	git push

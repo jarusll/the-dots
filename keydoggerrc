@@ -2,7 +2,7 @@
 @stop=sudo keydogger stop
 @edit=vim ~/source/the-dots/keydoggerrc
 :ai=explain in short and simple terms
-@install=sudo dnf install -y
-@update=sudo dnf update -y
-@search=sudo dnf search
+@install=sudo dnf install -y 
+@update=sudo dnf update -y 
+@search=sudo dnf search 
 @user=jarusll
